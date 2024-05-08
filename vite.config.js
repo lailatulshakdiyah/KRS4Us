@@ -14,6 +14,7 @@ export default defineConfig({
     resolve: {
         alias: {
             '@images': path.resolve(__dirname, 'resources/images'),
+            '@css' : path.resolve(__dirname, 'resources/css'),
         },
     },
 });
