@@ -1,38 +1,80 @@
 import { Link, Head } from '@inertiajs/react';
+import Navbar from '@/Components/Navbar.jsx';
+import InputLabel from '@/Components/InputLabel';
+import InputError from '@/Components/InputError';
+import TextInput from '@/Components/TextInput';
+import PrimaryButton from '@/Components/PrimaryButton';
+import bg from '@images/ahn.png';
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function Welcome({ auth, status, canResetPassword }) {
     return (
         <>
             <Head title="Welcome" />
-            <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-                <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
-                    {auth.user ? (
-                        <Link
-                            href={route('dashboard')}
-                            className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                        >
-                            Dashboard
-                        </Link>
-                    ) : (
-                        <>
-                            <Link
-                                href={route('login')}
-                                className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                            >
-                                Log in
-                            </Link>
+            <div className="font-inter relative sm:flex sm:justify-center min-h-screen" style={{backgroundImage: 'url('+bg+')'}}>
+                <Navbar title='Welcome'></Navbar>
 
+                <div className="sm:flex sm:flex-row md:gap-20 max-w-7xl mt-16 mx-auto p-6 lg:p-8 justify-center items-center bg-cover">
+                    <div className="flex flex-col">
+                        <div className='text-blue-600 text-5xl font-extrabold'>Repot Tukar KRS?</div>
+                        <div className='text-black text-4xl'>Santai Dulu Ga Sih</div>
+                        <div className="mt-7 text-4xl">
+                            <span className='text-black'>Tenang Ada </span>
+                            <span className='text-blue-600 font-bold'>KRS4Us</span>
+                        </div>
+                        <div className="mt-4 max-w-md">Yorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra.</div>
+                    </div>
+                    <div className="grid bg-white w-96 h-min rounded-lg drop-shadow-2xl p-11">
+                        <div className="w-min mx-auto text-blue-600 text-4xl font-black text-center">KRS</div>
+                        <div className="w-min mx-auto -mt-3 text-4xl font-black text-center">
+                            <span className="text-blue-600">4</span>
+                            <span className="text-black">US</span>
+                            <div className="bg-black h-0.5 -mt-1"></div>
+                        </div>
+                        <div className="mt-7 text-xs text-center text-black">
+                            Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                        </div>
+
+                        <InputLabel htmlFor="nim" value="NIM" className="mt-9"/>
+                        <TextInput
+                            id="nim"
+                            type="text"
+                            name="nim"
+                            value=""
+                            className="mt-1 block w-full drop-shadow"
+                            autoComplete="username"
+                            isFocused={true}
+                            onChange={(e) => setData('email', e.target.value)}
+                        />
+                        <InputError message="" className="mt-2" />
+                        
+                        <InputLabel htmlFor="password" value="Password" className="mt-4"/>
+                        <TextInput
+                            id="password"
+                            type="password"
+                            name="password"
+                            value=""
+                            className="mt-1 block w-full"
+                            autoComplete="current-password"
+                            onChange={(e) => setData('password', e.target.value)}
+                        />
+                        <InputError message="" className="mt-2" />
+
+                        {canResetPassword && (
                             <Link
-                                href={route('register')}
-                                className="ms-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                                href={route('password.request')}
+                                className="mx-auto underline text-sm text-blue-600 mt-4 hover:text-blue-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
-                                Register
+                                Reset Your Password Here
                             </Link>
-                        </>
-                    )}
+                        )}
+
+                        <PrimaryButton className="mt-4 flex w-full text-sm">
+                            Sign in
+                        </PrimaryButton>
+                    </div>
                 </div>
 
-                <div className="max-w-7xl mx-auto p-6 lg:p-8">
+                {/* <div className="max-w-7xl mx-auto p-6 lg:p-8">
                     <div className="flex justify-center">
                         <svg
                             viewBox="0 0 62 65"
@@ -297,19 +339,9 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                             Laravel v{laravelVersion} (PHP v{phpVersion})
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> */}
 
-            <style>{`
-                .bg-dots-darker {
-                    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
-                }
-                @media (prefers-color-scheme: dark) {
-                    .dark\\:bg-dots-lighter {
-                        background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
-                    }
-                }
-            `}</style>
+            </div>
         </>
     );
 }
