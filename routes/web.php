@@ -22,7 +22,7 @@ Route::get('/', function () {
         'canResetPassword' => Route::has('password.request'),
         'status' => session('status')
     ]);
-});
+})->name('welcome');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
