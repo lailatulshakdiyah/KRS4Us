@@ -20,12 +20,22 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
         User::factory()->create([
             'name' => 'zran',
-            'nim' => 'G6401211074',
+            'nim' => 'G6401211000',
             'email' => 'admin@krs4us.com',
             'password' => '12345678',
             'is_admin' => true
+        ]);
+
+
+        User::factory()->create([
+            'name' => 'Muhammad Zahran',
+            'nim' => 'G6401211074',
+            'email' => 'muhammadzahran@apps.ipb.ac.id',
+            'password' => '12345678',
+            'is_admin' => false
         ]);
     }
 }

@@ -2,7 +2,7 @@ export default function Calendar({ courses }){
     const days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];
     return (
         <>
-            <div className="flex flex-row text-xs">
+            <div className="flex flex-row text-xs text-gray-400">
                 <div className="flex justify-center w-1/6">Senin</div>
                 <div className="flex justify-center w-1/6">Selasa</div>
                 <div className="flex justify-center w-1/6">Rabu</div>
@@ -14,23 +14,23 @@ export default function Calendar({ courses }){
                 {days.map((day, index) => (
                     <>
                         <div className="flex flex-col w-1/6 p-2 gap-2">
-                            {courses[day].map((course, _) => {
+                            {courses && courses[day].map((course) => {
                                 let bg;
                                 switch (course['type']) {
                                     case 'kuliah':
-                                        bg = 'bg-blue-700';
+                                        bg = 'bg-primary-300';
                                         break;
                                     case 'praktikum':
-                                        bg = 'bg-green-500';
+                                        bg = 'bg-success-300';
                                         break;
                                     case 'responsi':
-                                        bg = 'bg-yellow-300';
+                                        bg = 'bg-warning-300';
                                         break;
                                     default:
-                                        bg = 'bg-gray-400';
+                                        bg = 'bg-gray-75';
                                 }
                                 return (
-                                    <div className={`flex flex-col ${bg} p-1.5 text-white rounded-sm`} style={{fontSize: '0.6rem', lineHeight: '0.75rem'}}>
+                                    <div className={`flex flex-col ${bg} p-1.5 text-white-300 rounded-sm shadow-md`} style={{fontSize: '0.6rem', lineHeight: '0.75rem'}}>
                                         <div className="flex font-semibold">{course['start_time']} - {course['end_time']}</div>
                                         <div className="flex">{course['name']}</div>
                                         <div className="flex">{course['type'][0].toUpperCase()}{course['class']} - {course['room']}</div>
@@ -39,7 +39,7 @@ export default function Calendar({ courses }){
                             })}
                         </div>
                         {index < 5 ? (
-                            <div className="bg-gray-300 w-px"></div>
+                            <div className="bg-gray-75 w-px"></div>
                         ) : (<></>)}
                     </>
                 ))

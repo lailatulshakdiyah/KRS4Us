@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,7 +19,16 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
+Route::get('home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
+
+Route::middleware('auth:admin')->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])
+                    ->name('admin');
+    });
+    Route::get('mahasiswa/{nim}', [UserController::class, 'index'])
+                ->name('admin.mahasiswa.request');
+});
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
