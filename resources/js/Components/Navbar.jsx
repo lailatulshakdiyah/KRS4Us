@@ -29,7 +29,8 @@ export default function Navbar({ title, auth }) {
                                         List Mahasiswa
                                     </NavLink>
                                     <NavLink
-                                        
+                                        href={route('admin.matkul')}
+                                        active={route().current('admin.matkul')}
                                     >
                                         Daftar Mata Kuliah
                                     </NavLink>

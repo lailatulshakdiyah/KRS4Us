@@ -7,9 +7,7 @@ import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
 import bg from '@images/ahn.png';
 
-export default function Welcome({ auth, status, canResetPassword, log }) {
-    console.log(log);
-
+export default function Welcome({ auth, status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
@@ -25,7 +23,7 @@ export default function Welcome({ auth, status, canResetPassword, log }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('login'));
+        post(route('welcome'));
     };
     
     return (

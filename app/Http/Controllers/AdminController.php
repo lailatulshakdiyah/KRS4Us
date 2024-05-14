@@ -12,7 +12,7 @@ class AdminController extends Controller
     public function index(Request $request): Response
     {
         return Inertia::render('Admin/ListMahasiswa', [
-            'data' => User::select('id', 'name', 'nim', 'email')->get()
+            'users' => User::select('id', 'name', 'nim', 'email')->get()
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -36,6 +37,17 @@ class DatabaseSeeder extends Seeder
             'email' => 'muhammadzahran@apps.ipb.ac.id',
             'password' => '12345678',
             'is_admin' => false
+        ]);
+
+
+        Course::factory()->create([
+            'name' => 'IPB1234 - Ilmu Padi',
+            'class' => '1',
+            'room' => 'Golden Corner',
+            'type' => 'kuliah',
+            'day' => 'senin',
+            'start_time' => '00:00:00',
+            'end_time' => '23:59:00'
         ]);
     }
 }

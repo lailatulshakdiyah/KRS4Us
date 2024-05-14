@@ -2,7 +2,7 @@ import { Head } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
 import Table from '@/Components/Table';
 
-export default function ListMahasiswa({ auth, data }) {
+export default function ListMahasiswa({ auth, users }) {
     return (
         <>
             <Head title="Dashboard" />
@@ -11,7 +11,7 @@ export default function ListMahasiswa({ auth, data }) {
 
                 <div className="sm:flex sm:flex-col md:gap-7 max-w-7xl min-w-full mt-16 mx-auto p-6 lg:p-8 justify-center bg-cover">
                     <div className="flex flex-row justify-between items-center">
-                        <div className="flex text-xl font-medium">List Mahasiswa</div>
+                        <div className="flex text-xl text-gray-400 font-medium">List Mahasiswa</div>
                         <div className="flex gap-4">
                             <div className="inline-flex bg-primary-300 py-2 px-6 rounded-lg text-white-300 text-xs tracking-wider">Upload Excel</div>
                             <div className="inline-flex bg-primary-300 py-2 px-6 rounded-lg text-white-300 text-xs tracking-wider">Tambah Mahasiswa</div>
@@ -23,7 +23,7 @@ export default function ListMahasiswa({ auth, data }) {
 
                     <Table
                         headers={[['id', 'No.', 'w-12'], ['name', 'Nama', 'flex-grow'], ['nim', 'NIM', 'w-48'], ['email', 'Email', 'w-5/12']]}
-                        data={data}
+                        data={users}
                     />
                 </div>
             </div>

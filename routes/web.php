@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -21,13 +22,24 @@ use Inertia\Inertia;
 
 Route::get('home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
 
+Route::get('request', [HomeController::class, 'req'])->middleware(['auth', 'verified'])->name('request');
+
+Route::get('matkul/{id}', [HomeController::class, 'course'])->middleware(['auth', 'verified'])->name('course');
+
 Route::middleware('auth:admin')->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])
                     ->name('admin');
+
+        Route::get('matkul', [CourseController::class, 'index'])
+        ->name('admin.matkul');
+
+        Route::post('matkul', [CourseController::class, 'store'])
+        ->name('admin.matkul.store');
+
+        Route::get('mahasiswa/{nim}', [UserController::class, 'index'])
+                    ->name('admin.mahasiswa.request');
     });
-    Route::get('mahasiswa/{nim}', [UserController::class, 'index'])
-                ->name('admin.mahasiswa.request');
 });
 
 // Route::middleware('auth')->group(function () {

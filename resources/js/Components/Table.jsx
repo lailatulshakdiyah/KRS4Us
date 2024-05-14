@@ -1,6 +1,6 @@
-export default function Table({ headers, data }) {
+export default function Table({ headers, data, className='', ...props }) {
     return (
-        <div className="flex flex-col border border-primary-300 rounded-sm">
+        <div {...props} className={`flex flex-col border border-primary-300 rounded-sm h-min ${className}`}>
             <div className="flex flex-row bg-primary-200 text-white-300 font-medium">
                 {headers && headers.map((header, index) => (
                     <>

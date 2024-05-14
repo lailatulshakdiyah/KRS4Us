@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('class');
             $table->string('room');
             $table->enum('type', ['kuliah', 'praktikum', 'responsi']);
-            $table->enum('day', ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
+            $table->enum('day', ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu']);
             $table->time('start_time');
             $table->time('end_time');
             $table->timestamps();
