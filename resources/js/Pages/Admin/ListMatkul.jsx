@@ -84,14 +84,14 @@ export default function ListMatkul({ auth, courses }) {
                                 id="type"
                                 name="type"
                                 value={data.type}
-                                className="mt-1 block w-full rounded-md"
+                                className="mt-1 block w-full rounded-md text-gray-75"
                                 placeholder="Select an Option"
                                 onChange={(e) => setData('type', e.target.value)}
                                 required
                             >
-                                <option value="kuliah">Kuliah</option>
-                                <option value="praktikum">Praktikum</option>
-                                <option value="responsi">Responsi</option>
+                                <option value="kuliah" className='text-gray-300'>Kuliah</option>
+                                <option value="praktikum" className='text-gray-300'>Praktikum</option>
+                                <option value="responsi" className='text-gray-300'>Responsi</option>
                             </SelectInput>
 
                             <div className="columns-2 gap-x-6">
