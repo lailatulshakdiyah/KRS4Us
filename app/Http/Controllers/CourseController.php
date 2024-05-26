@@ -30,6 +30,7 @@ class CourseController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
+            'code' => 'required',
             'name' => 'required',
             'type' => ['required', Rule::in(['kuliah', 'praktikum', 'responsi'])],
             'start_time' => ['required', 'regex:/^([01]\d|2[0-3]).([0-5]\d)$/'],

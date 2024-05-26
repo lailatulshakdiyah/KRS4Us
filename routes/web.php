@@ -31,14 +31,17 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])
                     ->name('admin');
 
-        Route::get('matkul', [CourseController::class, 'index'])
-        ->name('admin.matkul');
+        Route::post('/', [AdminController::class, 'store']);
 
-        Route::post('matkul', [CourseController::class, 'store'])
-        ->name('admin.matkul.store');
+        Route::get('matkul', [CourseController::class, 'index'])
+                    ->name('admin.matkul');
+
+        Route::post('matkul', [CourseController::class, 'store']);
 
         Route::get('mahasiswa/{nim}', [UserController::class, 'index'])
-                    ->name('admin.mahasiswa.request');
+                    ->name('admin.mahasiswa');
+
+        Route::post('mahasiswa/{nim}', [UserController::class, 'edit']);
     });
 });
 

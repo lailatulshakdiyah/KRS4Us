@@ -22,7 +22,50 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        User::factory()->create([
+        $courses = [
+            Course::factory()->create([
+                'code' => 'IPB1234',
+                'name' => 'Ilmu Padi',
+                'class' => '1',
+                'room' => 'Golden Corner',
+                'type' => 'kuliah',
+                'day' => 'senin',
+                'start_time' => '00:00:00',
+                'end_time' => '23:59:00'
+            ]),
+            Course::factory()->create([
+                'code' => 'IPB1234',
+                'name' => 'Ilmu Padi',
+                'class' => '1',
+                'room' => 'Bangku Statistika',
+                'type' => 'praktikum',
+                'day' => 'selasa',
+                'start_time' => '00:00:00',
+                'end_time' => '23:59:00'
+            ]),
+            Course::factory()->create([
+                'code' => 'IPB1235',
+                'name' => 'Ilmu Manyala',
+                'class' => '1',
+                'room' => 'Komlounge',
+                'type' => 'kuliah',
+                'day' => 'senin',
+                'start_time' => '00:00:00',
+                'end_time' => '23:59:00'
+            ]),
+            Course::factory()->create([
+                'code' => 'IPB1235',
+                'name' => 'Ilmu Manyala',
+                'class' => '1',
+                'room' => 'Localhost',
+                'type' => 'praktikum',
+                'day' => 'jumat',
+                'start_time' => '00:00:00',
+                'end_time' => '23:59:00'
+            ]),
+        ];
+
+        $admin = User::factory()->create([
             'name' => 'zran',
             'nim' => 'G6401211000',
             'email' => 'admin@krs4us.com',
@@ -30,6 +73,9 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true
         ]);
 
+        foreach ($courses as $course) {
+            $admin->courses()->attach($course);
+        }
 
         User::factory()->create([
             'name' => 'Muhammad Zahran',
@@ -37,17 +83,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'muhammadzahran@apps.ipb.ac.id',
             'password' => '12345678',
             'is_admin' => false
-        ]);
-
-
-        Course::factory()->create([
-            'name' => 'IPB1234 - Ilmu Padi',
-            'class' => '1',
-            'room' => 'Golden Corner',
-            'type' => 'kuliah',
-            'day' => 'senin',
-            'start_time' => '00:00:00',
-            'end_time' => '23:59:00'
         ]);
     }
 }

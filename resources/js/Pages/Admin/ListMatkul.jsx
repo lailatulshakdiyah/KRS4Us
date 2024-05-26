@@ -10,6 +10,7 @@ import SelectInput from '@/Components/SelectInput';
 
 export default function ListMatkul({ auth, courses }) {
     const { data, setData, post, processing, errors, reset } = useForm({
+        code: '',
         name: '',
         type: '',
         start_time: '',
@@ -19,17 +20,15 @@ export default function ListMatkul({ auth, courses }) {
 
     useEffect(() => {
         return () => {
-            reset('name', 'type', 'start_time', 'end_time', 'room');
+            reset('code', 'name', 'type', 'start_time', 'end_time', 'room');
         };
     }, []);
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('admin.matkul.store'));
+        post(route('admin.matkul'));
     };
-
-    console.log(courses);
 
     for (let i = 0; i < courses.length; i++) {
         courses[i]['schedule'] = `${courses[i]['start_time']} - ${courses[i]['end_time']}`
@@ -56,14 +55,26 @@ export default function ListMatkul({ auth, courses }) {
                         />
 
                         <form onSubmit={submit} className="bg-white-0 text-gray-400 w-2/5 py-5 px-6 font-gray-400 rounded-md">
-                            <InputLabel htmlFor="name" value="Nama"/>
+                        <InputLabel htmlFor="code" value="Kode"/>
+                            <TextInput
+                                id="code"
+                                type="text"
+                                name="code"
+                                value={data.code}
+                                className="mt-1 block w-full"
+                                placeholder="IPB1470"
+                                onChange={(e) => setData('code', e.target.value)}
+                                required
+                            />
+                            
+                            <InputLabel htmlFor="name" value="Nama" className="mt-2"/>
                             <TextInput
                                 id="name"
                                 type="text"
                                 name="name"
                                 value={data.name}
                                 className="mt-1 block w-full"
-                                placeholder="IPB1470 - Ilmu Padi"
+                                placeholder="Ilmu Padi"
                                 onChange={(e) => setData('name', e.target.value)}
                                 required
                             />
@@ -120,10 +131,7 @@ export default function ListMatkul({ auth, courses }) {
                                 required
                             />
 
-
-                            <PrimaryButton className="mt-8 flex w-full text-sm" disabled={processing} >
-                                Tambahkan
-                            </PrimaryButton>
+                            <PrimaryButton className="mt-8 flex w-full text-sm" disabled={processing}>Tambahkan</PrimaryButton>
                         </form>
                     </div>
                 </div>
