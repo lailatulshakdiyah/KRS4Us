@@ -30,7 +30,7 @@ const Row = ({row, headers, editPrefix, deletePrefix}) => {
     const [isHovered, setIsHovered] = useState(false);
 
     let temp = (
-        <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className="relative flex flex-row text-gray-400 border-t border-primary-200">
+        <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className="relative flex flex-row border-t border-primary-200">
             {headers.map((header, index) => (
                 <>
                     <div className={`flex py-1 px-2 ${header[2]}`}>{row[header[0]]}</div>
@@ -42,7 +42,7 @@ const Row = ({row, headers, editPrefix, deletePrefix}) => {
             {deletePrefix && isHovered && (
                 <Link
                     href={route(deletePrefix, row['route'])}
-                    className='absolute -translate-y-1/2 top-1/2 end-1 bg-red-600 px-2 text-white-0'
+                    className='absolute -translate-y-1/2 top-1/2 end-1 bg-red-500 px-2 text-white-0 rounded-md'
                     method='delete'
                     as='button'
                 >
@@ -55,7 +55,7 @@ const Row = ({row, headers, editPrefix, deletePrefix}) => {
         return (
             <Link
                 href={route(editPrefix, row['route'])}
-                className='hover:bg-white-200'
+                className='transition duration-200 ease-in-out text-gray-400 hover:bg-primary-100 hover:text-primary-50 hover:font-medium'
             >{temp}</Link>
         )
     } else {
