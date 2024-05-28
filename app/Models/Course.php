@@ -23,6 +23,6 @@ class Course extends Model
 
     public function courses(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'course_user', 'course_id', 'user_nim');
     }
 }
