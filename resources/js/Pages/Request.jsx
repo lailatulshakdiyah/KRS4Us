@@ -14,7 +14,7 @@ export default function Request({ auth, users }) {
     return (
         <>
             <Head title="Requests"/>
-            <div className="bg-primary-50 font inter relative sm:flex min-h-screen">
+            <div className="bg-primary-50 font-inter relative sm:flex min-h-screen">
                 <Navbar title={auth.user.name} auth={auth}></Navbar>
 
                 <div className="sm:flex sm:flex-col md:gap-7 max-w-6xl min-w-full mt-16 mx-auto p-4 lg:p-8 justify-start bg-cover">

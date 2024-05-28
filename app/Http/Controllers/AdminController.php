@@ -8,14 +8,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Inertia\Response;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
     public function index(Request $request): Response
     {
         $users = User::select('id', 'name', 'nim', 'email')->get();
+
         for ($i = 0; $i < count($users); $i++) {
-            $users[$i]['route'] = ['nim' => $users[$i]['nim']];
+            $users[$i]->route = ['nim' => $users[$i]['nim']];
         }
 
         return Inertia::render('Admin/ListMahasiswa', [
@@ -38,5 +40,21 @@ class AdminController extends Controller
         User::insert($validated);
 
         return redirect()->route('admin');
+    }
+
+    public function upload(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv|max:2048',
+        ]);
+
+        if ($request->file('file')) {
+
+            // Excel::import(new UsersImport, $request->file('file'));
+
+            return back()->with('success', 'File uploaded and processed successfully.');
+        }
+
+        return back()->with('error', 'File upload failed.');
     }
 }

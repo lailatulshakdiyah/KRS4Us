@@ -63,4 +63,11 @@ class UserController extends Controller
 
         return redirect()->route('admin.mahasiswa', ['nim' => $validated['nim']]);
     }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        User::where('nim', $request->route('nim'))->first()->delete();
+
+        return redirect()->route('admin');
+    }
 }

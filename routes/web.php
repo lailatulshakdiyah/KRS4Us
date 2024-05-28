@@ -26,6 +26,17 @@ Route::get('request', [HomeController::class, 'req'])->middleware(['auth', 'veri
 
 Route::get('matkul/{id}', [HomeController::class, 'course'])->middleware(['auth', 'verified'])->name('course');
 
+Route::get('test-email', function () {
+    \Illuminate\Support\Facades\Mail::to('muhammadzahran@apps.ipb.ac.id')
+        ->send(new \App\Mail\Credentials([
+            'name' => 'Muhammad Zahran',
+            'nim' => 'G6401211074',
+            'password' => '12345678'
+        ]));
+
+    return redirect()->route('admin');
+});
+
 Route::middleware('auth:admin')->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])
@@ -33,15 +44,22 @@ Route::middleware('auth:admin')->group(function () {
 
         Route::post('/', [AdminController::class, 'store']);
 
+        Route::post('upload', [AdminController::class, 'upload'])
+                    ->name('admin.upload');
         Route::get('matkul', [CourseController::class, 'index'])
                     ->name('admin.matkul');
 
         Route::post('matkul', [CourseController::class, 'store']);
 
+        Route::delete('matkul/{id}', [CourseController::class, 'destroy'])
+                    ->name('admin.matkul.destroy');
+
         Route::get('mahasiswa/{nim}', [UserController::class, 'index'])
                     ->name('admin.mahasiswa');
 
         Route::post('mahasiswa/{nim}', [UserController::class, 'edit']);
+
+        Route::delete('mahasiswa/{nim}', [UserController::class, 'destroy']);
     });
 });
 

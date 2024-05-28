@@ -11,6 +11,7 @@ export default function NavLink({ active = false, className = '', children, ...p
                     : 'text-white') +
                 className
             }
+            as='button'
         >
             {children}
         </Link>

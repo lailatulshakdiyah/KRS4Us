@@ -15,9 +15,13 @@ class CourseController extends Controller
 {
     public function index(Request $request): Response
     {
-        $courses = Course::select('name', 'type', 'class', 'start_time', 'end_time', 'room')->get();
+        $courses = Course::select('id', 'code', 'name', 'class', 'type', 'day', 'start_time', 'end_time', 'room')->get();
 
         for ($i = 0; $i < count($courses); $i++) {
+            $courses[$i]->route = $courses[$i]->id;
+            unset($courses[$i]->id);
+            $courses[$i]->name = $courses[$i]->code . ' - ' . $courses[$i]->name;
+            unset($courses[$i]->code);
             $courses[$i]->start_time = DateTime::createFromFormat('H:i:s', $courses[$i]->start_time)->format('H.i');
             $courses[$i]->end_time = DateTime::createFromFormat('H:i:s', $courses[$i]->end_time)->format('H.i');
         }
@@ -49,6 +53,13 @@ class CourseController extends Controller
         }
 
         Course::insert($validated);
+
+        return redirect()->route('admin.matkul');
+    }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        Course::where('id', $request->route('id'))->first()->delete();
 
         return redirect()->route('admin.matkul');
     }

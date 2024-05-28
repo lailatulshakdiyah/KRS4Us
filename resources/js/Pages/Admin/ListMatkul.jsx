@@ -13,6 +13,7 @@ export default function ListMatkul({ auth, courses }) {
         code: '',
         name: '',
         type: '',
+        day: '',
         start_time: '',
         end_time: '',
         room: ''
@@ -20,13 +21,12 @@ export default function ListMatkul({ auth, courses }) {
 
     useEffect(() => {
         return () => {
-            reset('code', 'name', 'type', 'start_time', 'end_time', 'room');
+            reset('code', 'name', 'type', 'day', 'start_time', 'end_time', 'room');
         };
     }, []);
 
     const submit = (e) => {
         e.preventDefault();
-
         post(route('admin.matkul'));
     };
 
@@ -49,13 +49,14 @@ export default function ListMatkul({ auth, courses }) {
 
                     <div className="flex flex-row gap-9 justify-between items-start">
                         <Table
-                            headers={[['name', 'Mata Kuliah', 'w-2/6'], ['schedule', 'Jadwal', 'w-3/6'], ['parallel', 'Paralel', 'w-1/6']]}
+                            headers={[['name', 'Mata Kuliah', 'w-3/6'], ['day', 'Hari', 'w-1/6 capitalize'], ['schedule', 'Jam', 'w-2/6'], ['parallel', 'Paralel', 'w-1/6']]}
                             data={courses}
                             className="w-3/5"
+                            deletePrefix='admin.matkul.destroy'
                         />
 
                         <form onSubmit={submit} className="bg-white-0 text-gray-400 w-2/5 py-5 px-6 font-gray-400 rounded-md">
-                        <InputLabel htmlFor="code" value="Kode"/>
+                            <InputLabel htmlFor="code" value="Kode"/>
                             <TextInput
                                 id="code"
                                 type="text"
@@ -84,7 +85,7 @@ export default function ListMatkul({ auth, courses }) {
                                 id="type"
                                 name="type"
                                 value={data.type}
-                                className="mt-1 block w-full rounded-md text-gray-75"
+                                className={`mt-1 block w-full rounded-md ${data.type === '' ? 'text-slate-400' : ''}`}
                                 placeholder="Select an Option"
                                 onChange={(e) => setData('type', e.target.value)}
                                 required
@@ -92,6 +93,24 @@ export default function ListMatkul({ auth, courses }) {
                                 <option value="kuliah" className='text-gray-300'>Kuliah</option>
                                 <option value="praktikum" className='text-gray-300'>Praktikum</option>
                                 <option value="responsi" className='text-gray-300'>Responsi</option>
+                            </SelectInput>
+
+                            <InputLabel htmlFor="day" value="Hari" className="mt-2"/>
+                            <SelectInput
+                                id="day"
+                                name="day"
+                                value={data.day}
+                                className={`mt-1 block w-full rounded-md ${data.day === '' ? 'text-slate-400' : ''}`}
+                                placeholder="Select an Option"
+                                onChange={(e) => setData('day', e.target.value)}
+                                required
+                            >
+                                <option value="senin" className='text-gray-300'>Senin</option>
+                                <option value="selasa" className='text-gray-300'>Selasa</option>
+                                <option value="rabu" className='text-gray-300'>Rabu</option>
+                                <option value="kamis" className='text-gray-300'>Kamis</option>
+                                <option value="jumat" className='text-gray-300'>Jumat</option>
+                                <option value="sabtu" className='text-gray-300'>Sabtu</option>
                             </SelectInput>
 
                             <div className="columns-2 gap-x-6">

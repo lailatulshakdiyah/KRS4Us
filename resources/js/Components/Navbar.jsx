@@ -4,7 +4,7 @@ import NavLink from '@/Components/NavLink';
 
 export default function Navbar({ title, auth }) {
     return (
-        <nav className="fixed top-0 w-screen bg-primary-300">
+        <nav className="fixed z-40 top-0 w-screen bg-primary-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-medium">
                 <div className="flex justify-between h-16">
                     <div className="shrink-0 flex items-center">
@@ -55,7 +55,8 @@ export default function Navbar({ title, auth }) {
                                         Home
                                     </NavLink>
                                     <NavLink
-                                        
+                                        href={route('request')}
+                                        active={route().current('request')}
                                     >
                                         Request
                                     </NavLink>
