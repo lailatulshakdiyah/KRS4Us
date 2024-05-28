@@ -18,12 +18,12 @@ export default function Home({ auth }) {
                             className="flex flex-col px-6 py-5 gap-3"
                             extra={<div className="flex rounded-b-md bg-gray-75 text-gray-400 px-5 sm:px-6 lg:px-8 py-2 justify-center">Jumlah SKS: 8</div>}
                         >
-                            <div className="transition duration-300 ease-in-out hover:bg-primary-50 hover:shadow-md rounded-md p-2"> 
+                            <div className="transition duration-300 ease-in-out hover:bg-primary-50 hover:shadow-md rounded-md p-2 cursor-pointer"> 
                                 <span className="text-primary-300 font-semibold">IPB 1231 </span>
                                 <span className="text-gray-400">- Ilmu Padi</span>
                                 <div className="flex flex-row text-gray-400 -mt-1">4 (3-1) - Mayor</div>
                             </div>
-                            <div className="transition duration-300 ease-in-out hover:bg-primary-50 hover:shadow-md rounded-md p-2">
+                            <div className="transition duration-300 ease-in-out hover:bg-primary-50 hover:shadow-md rounded-md p-2 cursor-pointer">
                                 <span className="text-primary-300 font-semibold">IPB 1231 </span>
                                 <span className="text-gray-400 ms-1">- Ilmu Padi</span>
                                 <div className="flex flex-row text-gray-400 -mt-1">4 (3-1) - Mayor</div>

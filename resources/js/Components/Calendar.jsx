@@ -35,7 +35,7 @@ export default function Calendar({ courses }){
                                         hoverBg = 'hover:bg-gray-100';
                                 }
                                 return (
-                                    <div className={`flex flex-col ${bg} ${hoverBg} p-1.5 text-white-300 rounded-sm shadow-md transition duration-300 ease-in-out`} style={{fontSize: '0.6rem', lineHeight: '0.75rem'}}>
+                                    <div className={`flex flex-col ${bg} ${hoverBg} p-1.5 text-white-300 rounded-sm shadow-md transition duration-300 ease-in-out cursor-pointer`} style={{fontSize: '0.6rem', lineHeight: '0.75rem'}}>
                                         <div className="flex font-semibold">{course['start_time']} - {course['end_time']}</div>
                                         <div className="flex">{course['name']}</div>
                                         <div className="flex">{course['type'][0].toUpperCase()}{course['class']} - {course['room']}</div>
