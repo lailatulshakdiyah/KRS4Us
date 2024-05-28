@@ -42,7 +42,7 @@ const Row = ({row, headers, editPrefix, deletePrefix}) => {
             {deletePrefix && isHovered && (
                 <Link
                     href={route(deletePrefix, row['route'])}
-                    className='absolute -translate-y-1/2 top-1/2 end-1 bg-red-500 px-2 text-white-0 rounded-md'
+                    className='absolute -translate-y-1/2 top-1/2 end-1 transition duration-300 bg-red-400 px-2 text-white-0 hover:bg-red-600 rounded-md'
                     method='delete'
                     as='button'
                 >
