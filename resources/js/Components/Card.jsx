@@ -5,6 +5,7 @@ export default function Card({ title, description, className = '', children, ext
                 <div className="flex flex-row items-center gap-2 text-white-300">{title}</div>
                 <div className="flex flex-row items-center gap-2 text-white-300">{description}</div>
             </div>
+
             <div
                 {...props}
                 className={`w-full bg-white-0 ${className}`}
