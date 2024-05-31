@@ -42,7 +42,7 @@ const Row = ({row, headers, editPrefix, deletePrefix}) => {
             {deletePrefix && isHovered && (
                 <Link
                     href={route(deletePrefix, row['route'])}
-                    className='absolute -translate-y-1/2 top-1/2 end-1 transition duration-300 bg-red-400 px-2 text-white-0 hover:bg-red-600 rounded-md'
+                    className='absolute -translate-y-1/2 top-1/2 end-1 transition bg-red-400 px-2 text-white-0 hover:bg-red-600 rounded-md'
                     method='delete'
                     as='button'
                 >
@@ -55,7 +55,7 @@ const Row = ({row, headers, editPrefix, deletePrefix}) => {
         return (
             <Link
                 href={route(editPrefix, row['route'])}
-                className='transition duration-200 ease-in-out text-gray-400 hover:bg-primary-100 hover:text-primary-50 hover:font-medium'
+                className='transition duration-200 ease-in-out text-gray-400 hover:bg-primary-100 hover:text-primary-50'
             >{temp}</Link>
         )
     } else {

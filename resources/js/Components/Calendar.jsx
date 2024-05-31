@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/react';
+
 export default function Calendar({ courses }){
     const days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];
     return (
@@ -15,6 +17,7 @@ export default function Calendar({ courses }){
                     <>
                         <div className="flex flex-col w-1/6 p-2 gap-2">
                             {courses && courses[day].map((course) => {
+                                console.log(course);
                                 let bg;
                                 let hoverBg;
                                 switch (course['type']) {
@@ -35,11 +38,11 @@ export default function Calendar({ courses }){
                                         hoverBg = 'hover:bg-gray-100';
                                 }
                                 return (
-                                    <div className={`flex flex-col ${bg} ${hoverBg} p-1.5 text-white-300 rounded-sm shadow-md transition duration-300 ease-in-out cursor-pointer`} style={{fontSize: '0.6rem', lineHeight: '0.75rem'}}>
+                                    <Link href={route('course', course['route'])} className={`flex flex-col ${bg} ${hoverBg} p-1.5 text-white-300 rounded-sm shadow-md transition duration-200 ease-in-out`} style={{fontSize: '0.6rem', lineHeight: '0.75rem'}}>
                                         <div className="flex font-semibold">{course['start_time']} - {course['end_time']}</div>
                                         <div className="flex">{course['name']}</div>
                                         <div className="flex">{course['type'][0].toUpperCase()}{course['class']} - {course['room']}</div>
-                                    </div>
+                                    </Link>
                                 )
                             })}
                         </div>

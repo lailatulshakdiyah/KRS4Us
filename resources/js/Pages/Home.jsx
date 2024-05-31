@@ -1,9 +1,9 @@
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
 import Card from '@/Components/Card';
 import Calendar from '@/Components/Calendar';
 
-export default function Home({ auth }) {
+export default function Home({ auth, list, courses }) {
     return (
         <>
             <Head title="Home" />
@@ -15,19 +15,16 @@ export default function Home({ auth }) {
                         <Card
                             title="Jadwal Saya"
                             description="SKS Maksimum: 24"
-                            className="flex flex-col px-6 py-5 gap-3"
+                            className="flex flex-col max-h-48 overflow-auto px-5 py-3"
                             extra={<div className="flex rounded-b-md bg-gray-75 text-gray-400 px-5 sm:px-6 lg:px-8 py-2 justify-center">Jumlah SKS: 8</div>}
                         >
-                            <div className="transition duration-300 ease-in-out hover:bg-primary-50 hover:shadow-md rounded-md p-2 cursor-pointer"> 
-                                <span className="text-primary-300 font-semibold">IPB 1231 </span>
-                                <span className="text-gray-400">- Ilmu Padi</span>
-                                <div className="flex flex-row text-gray-400 -mt-1">4 (3-1) - Mayor</div>
-                            </div>
-                            <div className="transition duration-300 ease-in-out hover:bg-primary-50 hover:shadow-md rounded-md p-2 cursor-pointer">
-                                <span className="text-primary-300 font-semibold">IPB 1231 </span>
-                                <span className="text-gray-400 ms-1">- Ilmu Padi</span>
-                                <div className="flex flex-row text-gray-400 -mt-1">4 (3-1) - Mayor</div>
-                            </div>
+                            {list && list.map((course) => (
+                                <Link href={route('course', course.type)} className="transition-all duration-200 ease-in-out hover:bg-primary-50 hover:shadow-md rounded-md px-2 py-1 hover:py-2"> 
+                                    <span className="text-primary-300 font-semibold">{course.code} </span>
+                                    <span className="text-gray-400">- {course.name}</span>
+                                    <span className="text-gray-400 capitalize"> ({course.type})</span>
+                                </Link>
+                            ))}
                         </Card>
                         <Card
                             title="Kalender Saya"
@@ -42,77 +39,7 @@ export default function Home({ auth }) {
                             className="flex flex-col pt-2 px-3 rounded-b-md"
                         >
                             <Calendar
-                                courses={
-                                    {
-                                        'senin': [
-                                            {
-                                                'name': 'IPB1231 - Ilmu Padi',
-                                                'class': 1,
-                                                'room': 'CCR 4.4',
-                                                'type': 'kuliah',
-                                                'start_time': '10:00',
-                                                'end_time': '11.40'
-                                            },
-                                            {
-                                                'name': 'IPB1231 - Ilmu Padi',
-                                                'class': 1,
-                                                'room': 'CCR 4.4',
-                                                'type': 'responsi',
-                                                'start_time': '12:00',
-                                                'end_time': '13.40'
-                                            }
-                                        ],
-                                        'selasa': [
-                                            {
-                                                'name': 'IPB1231 - Ilmu Padi',
-                                                'class': 1,
-                                                'room': 'CCR 4.4',
-                                                'type': 'praktikum',
-                                                'start_time': '13:00',
-                                                'end_time': '14.00'
-                                            }
-                                        ],
-                                        'rabu': [
-                                            {
-                                                'name': 'IPB1231 - Ilmu Padi',
-                                                'class': 1,
-                                                'room': 'CCR 4.4',
-                                                'type': 'kuliah',
-                                                'start_time': '15:00',
-                                                'end_time': '16.40'
-                                            }
-                                        ],
-                                        'kamis': [
-                                            {
-                                                'name': 'IPB1231 - Ilmu Padi',
-                                                'class': 1,
-                                                'room': 'CCR 4.4',
-                                                'type': 'kuliah',
-                                                'start_time': '10:00',
-                                                'end_time': '11.40'
-                                            }
-                                        ],
-                                        'jumat': [
-                                            {
-                                                'name': 'IPB1231 - Ilmu Padi',
-                                                'class': 1,
-                                                'room': 'CCR 4.4',
-                                                'type': 'responsi',
-                                                'start_time': '10:00',
-                                                'end_time': '11.40'
-                                            },
-                                            {
-                                                'name': 'IPB1231 - Ilmu Padi',
-                                                'class': 1,
-                                                'room': 'CCR 4.4',
-                                                'type': 'praktikum',
-                                                'start_time': '10:00',
-                                                'end_time': '11.40'
-                                            }
-                                        ],
-                                        'sabtu': []
-                                    }
-                                }
+                                courses={courses}
                             />
                         </Card>
                     </div>
@@ -129,16 +56,18 @@ export default function Home({ auth }) {
                                             'class': 1,
                                             'room': 'CCR 4.4',
                                             'type': 'kuliah',
-                                            'start_time': '10:00',
-                                            'end_time': '11.40'
+                                            'start_time': '10.00',
+                                            'end_time': '11.40',
+                                            'route': '1'
                                         },
                                         {
                                             'name': 'IPB1231 - Ilmu Padi',
                                             'class': 1,
                                             'room': 'CCR 4.4',
                                             'type': 'responsi',
-                                            'start_time': '12:00',
-                                            'end_time': '13.40'
+                                            'start_time': '12.00',
+                                            'end_time': '13.40',
+                                            'route': '1'
                                         }
                                     ],
                                     'selasa': [
@@ -147,8 +76,9 @@ export default function Home({ auth }) {
                                             'class': 1,
                                             'room': 'CCR 4.4',
                                             'type': 'praktikum',
-                                            'start_time': '13:00',
-                                            'end_time': '14.00'
+                                            'start_time': '13.00',
+                                            'end_time': '14.00',
+                                            'route': 'home'
                                         }
                                     ],
                                     'rabu': [
@@ -157,8 +87,9 @@ export default function Home({ auth }) {
                                             'class': 1,
                                             'room': 'CCR 4.4',
                                             'type': 'kuliah',
-                                            'start_time': '15:00',
-                                            'end_time': '16.40'
+                                            'start_time': '15.00',
+                                            'end_time': '16.40',
+                                            'route': '1'
                                         }
                                     ],
                                     'kamis': [
@@ -167,8 +98,9 @@ export default function Home({ auth }) {
                                             'class': 1,
                                             'room': 'CCR 4.4',
                                             'type': 'kuliah',
-                                            'start_time': '10:00',
-                                            'end_time': '11.40'
+                                            'start_time': '10.00',
+                                            'end_time': '11.40',
+                                            'route': '1'
                                         }
                                     ],
                                     'jumat': [
@@ -177,16 +109,18 @@ export default function Home({ auth }) {
                                             'class': 1,
                                             'room': 'CCR 4.4',
                                             'type': 'responsi',
-                                            'start_time': '10:00',
-                                            'end_time': '11.40'
+                                            'start_time': '10.00',
+                                            'end_time': '11.40',
+                                            'route': '1'
                                         },
                                         {
                                             'name': 'IPB1231 - Ilmu Padi',
                                             'class': 1,
                                             'room': 'CCR 4.4',
                                             'type': 'praktikum',
-                                            'start_time': '10:00',
-                                            'end_time': '11.40'
+                                            'start_time': '10.00',
+                                            'end_time': '11.40',
+                                            'route': '1'
                                         }
                                     ],
                                     'sabtu': []
