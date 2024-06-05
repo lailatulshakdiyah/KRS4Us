@@ -22,7 +22,7 @@ class Course extends Model
         'end_time'
     ];
 
-    public function courses(): BelongsToMany
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'course_user', 'course_id', 'user_nim');
     }

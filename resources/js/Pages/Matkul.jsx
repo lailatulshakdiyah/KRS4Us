@@ -1,10 +1,42 @@
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
 import Card from '@/Components/Card';
 import Table from '@/Components/Table';
 
 
-export default function Matkul({ auth, course }) {
+export default function Matkul({ auth, course, courses, students }) {
+    for (let i = 0; i < courses.length; i++) {
+        courses[i]['schedule'] = `${courses[i]['day']} ${courses[i]['start_time']} - ${courses[i]['end_time']}`;
+        
+        let bg;
+        switch (courses[i]['type']) {
+            case 'kuliah':
+                bg = 'bg-primary-300';
+                break;
+            case 'praktikum':
+                bg = 'bg-success-300';
+                break;
+            case 'responsi':
+                bg = 'bg-warning-300';
+                break;
+            default:
+                bg = 'bg-gray-75';
+        }
+        courses[i]['parallel'] = (
+            <div className={`flex items-center justify-center w-full rounded-lg ${bg} text-xs text-white-300 font-normal`}>
+                {courses[i]['type'][0].toUpperCase() + courses[i]['class']}
+            </div>
+        );
+        courses[i]['request'] = (
+            <Link
+                href={route('course.request', courses[i]['route'])}
+                className={`flex items-center justify-center w-full rounded-lg bg-primary-300 text-xs text-white-300 font-normal transition-all duration-200 ease-in-out hover:bg-primary-400`}
+            >
+                Request
+            </Link>
+        );
+    }
+
     return (
         <>
             <Head title="Matkul" />
@@ -13,11 +45,9 @@ export default function Matkul({ auth, course }) {
 
                 <div className='sm:flex sm:flex-col md:gap-7 max-w-7xl min-w-full mt-16 mx-auto p-6 lg:p-8 items-start bg-primary-50'>
                     <div className='flex flex-col'>
-                        <div className='flex text-primary-300 text-2xl font-extrabold leading-10'>Detail Mata Kuliah</div>
-                        <div className='flex text-5xl text-gray-500 font-normal'>IPB 1231 
-                            <span className='flex text-5xl ms-3 text-gray-500 font-normal'>- Ilmu Padi</span>
-                        </div>
-                        <div className='flex text-2xl text-gray-500 font-normal -mt-1 leading-9'>SKS: 4 (3-1) - Mayor</div>
+                        <div className='flex text-primary-300 text-2xl font-bold leading-10'>Detail Mata Kuliah</div>
+                        <div className='flex text-5xl text-gray-500 font-normal'>{course.name}</div>
+                        {/* <div className='flex text-2xl text-gray-500 font-normal -mt-1 leading-9'>SKS: 4 (3-1) - Mayor</div> */}
                     </div>
                     <div className='flex flex-row columns-2 gap-12 w-full'>
                         <Card
@@ -34,26 +64,23 @@ export default function Matkul({ auth, course }) {
                         >
                         </Card>
                         <Card
-                            title='Mahasiswa Peserta - K1'
+                            title={`Mahasiswa Peserta - ${course['type'][0].toUpperCase() + course['class']}`}
                         >
-                            {/*<div className='columns-2'>
-                                <Table></Table>
-                        </div> */}
                         </Card>
                          
                     </div>
-                    <Table
-                        className='flex flex-row columns-2 gap-12 w-1/2'
-                        headers={[['name', 'Jenis', 'flex-grow'], ['name', 'Jadwal', 'flex-grow'], ['name', 'Request', 'flex-grow']]}
-                        
-                    >
+                    <div className="flex flex-row w-full -my-6 gap-12">
                         <Table
-                            className='flex flex-col columns-2 gap-12 w-1/2'
-                            headers={[['nim', 'NIM', 'flex-row']]}
-                        ></Table>
-                    </Table>
-                    
-
+                            className='flex flex-row w-1/2 capitalize'
+                            headers={[['parallel', 'Paralel', 'w-1/6'], ['schedule', 'Jadwal', 'w-4/6'], ['request', '', 'w-1/6']]}
+                            data={courses}
+                        />
+                        <Table
+                            className='flex flex-col w-1/2'
+                            headers={[['nim', 'NIM', 'w-1/3'], ['name', 'Nama', 'w-2/3']]}
+                            data={students}
+                        />
+                    </div>
                 </div>
             </div>
         </>
