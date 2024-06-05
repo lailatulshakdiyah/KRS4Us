@@ -31,8 +31,8 @@ export default function ListMatkul({ auth, courses }) {
     };
 
     for (let i = 0; i < courses.length; i++) {
-        courses[i]['schedule'] = `${courses[i]['start_time']} - ${courses[i]['end_time']}`
-        courses[i]['parallel'] = courses[i]['type'][0].toUpperCase() + courses[i]['class']
+        courses[i]['schedule'] = `${courses[i]['start_time']} - ${courses[i]['end_time']}`;
+        courses[i]['parallel'] = courses[i]['type'][0].toUpperCase() + courses[i]['class'];
     }
 
     return (

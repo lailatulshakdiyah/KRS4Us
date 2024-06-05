@@ -5,8 +5,10 @@ import Table from '@/Components/Table';
 
 
 export default function Matkul({ auth, course, courses, students }) {
+    let temp = [];
     for (let i = 0; i < courses.length; i++) {
-        courses[i]['schedule'] = `${courses[i]['day']} ${courses[i]['start_time']} - ${courses[i]['end_time']}`;
+        temp.push({});
+        temp[i]['schedule'] = `${courses[i]['day']} ${courses[i]['start_time']} - ${courses[i]['end_time']}`;
         
         let bg;
         switch (courses[i]['type']) {
@@ -22,12 +24,12 @@ export default function Matkul({ auth, course, courses, students }) {
             default:
                 bg = 'bg-gray-75';
         }
-        courses[i]['parallel'] = (
+        temp[i]['parallel'] = (
             <div className={`flex items-center justify-center w-full rounded-lg ${bg} text-xs text-white-300 font-normal`}>
                 {courses[i]['type'][0].toUpperCase() + courses[i]['class']}
             </div>
         );
-        courses[i]['request'] = (
+        temp[i]['request'] = (
             <Link
                 href={route('course.request', courses[i]['route'])}
                 className={`flex items-center justify-center w-full rounded-lg bg-primary-300 text-xs text-white-300 font-normal transition-all duration-200 ease-in-out hover:bg-primary-400`}
@@ -73,7 +75,7 @@ export default function Matkul({ auth, course, courses, students }) {
                         <Table
                             className='flex flex-row w-1/2 capitalize'
                             headers={[['parallel', 'Paralel', 'w-1/6'], ['schedule', 'Jadwal', 'w-4/6'], ['request', '', 'w-1/6']]}
-                            data={courses}
+                            data={temp}
                         />
                         <Table
                             className='flex flex-col w-1/2'
