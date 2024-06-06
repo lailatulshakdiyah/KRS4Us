@@ -22,7 +22,7 @@ export default function ListMahasiswa({ auth, users }) {
                         <div className="flex gap-4">
                             <Dropdown>
                                 <Dropdown.Trigger>
-                                    <button type="button" className="inline-flex transition duration-200 bg-primary-300 hover:bg-primary-400 py-2 px-6 rounded-lg text-white-300 text-xs tracking-wider">Upload Excel</button>
+                                    <button type="button" className="inline-flex transition duration-200 bg-primary-300 hover:bg-primary-400 active:bg-primary-500 py-2 px-6 rounded-lg text-white-300 text-xs tracking-wider">Upload Excel</button>
                                 </Dropdown.Trigger>
                                 <Dropdown.Content align="right" width="w-56">
                                     <UploadExcel/>
@@ -30,7 +30,7 @@ export default function ListMahasiswa({ auth, users }) {
                             </Dropdown>
                             <Dropdown>
                                 <Dropdown.Trigger>
-                                    <button type="button" className="inline-flex transition duration-200 bg-primary-300 hover:bg-primary-400 py-2 px-6 rounded-lg text-white-300 text-xs tracking-wider">Tambah Mahasiswa</button>
+                                    <button type="button" className="inline-flex transition duration-200 bg-primary-300 hover:bg-primary-400 active:bg-primary-500 py-2 px-6 rounded-lg text-white-300 text-xs tracking-wider">Tambah Mahasiswa</button>
                                 </Dropdown.Trigger>
                                 <Dropdown.Content align="right" width="w-96">
                                     <TambahMahasiswa/>

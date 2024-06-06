@@ -20,13 +20,13 @@ export default function Calendar({ courses }){
                                 let bg;
                                 switch (course['type']) {
                                     case 'kuliah':
-                                        bg = 'bg-primary-300 hover:bg-primary-400';
+                                        bg = 'bg-primary-300 hover:bg-primary-400 active:bg-primary-500';
                                         break;
                                     case 'praktikum':
-                                        bg = 'bg-success-300 hover:bg-success-400';
+                                        bg = 'bg-success-300 hover:bg-success-400 active:bg-success-500';
                                         break;
                                     case 'responsi':
-                                        bg = 'bg-warning-300 hover:bg-warning-400';
+                                        bg = 'bg-warning-300 hover:bg-warning-400 active:bg-warning-500';
                                         break;
                                     default:
                                         bg = 'bg-gray-75 hover:bg-gray-100';

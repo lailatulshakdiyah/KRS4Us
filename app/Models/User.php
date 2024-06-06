@@ -56,7 +56,7 @@ class User extends Authenticatable
 
     public function addCourse(string $day, int $courseId)
     {
-        $courses = $this->courses()->where('day', $day);
-        dd($courses);
+        $course = Course::where('id', $courseId)->first();
+        $courses = $this->courses()->where('day', $day)->get();
     }
 }

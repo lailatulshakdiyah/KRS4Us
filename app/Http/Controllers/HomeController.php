@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Request as Req;
 use DateTime;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -75,16 +76,49 @@ class HomeController extends Controller
 
         $courses = Course::where('code', $course->code)->orderBy('type')->get();
 
+        $userCourses = $request->user()->courses()
+                        ->where('code', $course->code)
+                        ->select('id')
+                        ->get();
+
+        $reqs = Req::where('user_nim', $request->user()->nim)
+                    ->where('course_code', $course->code)
+                    ->where('status', '!=', 2)
+                    ->get();
+
         foreach ($courses as $index => $row)
         {
+            $status = null;
+
+            foreach ($userCourses as $c)
+            {
+                if ($c->id === $row['id'])
+                {
+                    $status = 'hidden';
+                }
+            }
+
+            if (is_null($status))
+            {
+                foreach ($reqs as $req)
+                {
+                    if ($req->course_code === $row['code'] && $req->course_type == $row['type'])
+                    {
+                        $status = 'disabled';
+                    }
+                }
+            }
+
             $courses[$index] = [
+                'id' => $row['id'],
                 'class' => $row['class'],
                 'room' => $row['room'],
                 'type' => $row['type'],
                 'day' => $row['day'],
                 'start_time' => DateTime::createFromFormat('H:i:s', $row['start_time'])->format('H.i'),
                 'end_time' => DateTime::createFromFormat('H:i:s', $row['end_time'])->format('H.i'),
-                'route' => $row['id']
+                'route' => $row['id'],
+                'status' => $status
             ];
         }
 

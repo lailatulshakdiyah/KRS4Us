@@ -29,14 +29,29 @@ export default function Matkul({ auth, course, courses, students }) {
                 {courses[i]['type'][0].toUpperCase() + courses[i]['class']}
             </div>
         );
-        temp[i]['request'] = (
-            <Link
-                href={route('course.request', courses[i]['route'])}
-                className={`flex items-center justify-center w-full rounded-lg bg-primary-300 text-xs text-white-300 font-normal transition-all duration-200 ease-in-out hover:bg-primary-400`}
-            >
-                Request
-            </Link>
-        );
+
+        if (courses[i]['status'] !== 'hidden') {
+            if (courses[i]['status'] !== 'disabled') {
+                temp[i]['request'] = (
+                    <Link
+                        href={route('course.request', courses[i]['route'])}
+                        className='flex items-center justify-center w-full rounded-lg bg-primary-300 hover:bg-primary-400 active:bg-primary-500 text-xs text-white-300 font-normal transition-all duration-200 ease-in-out'
+                    >
+                        Request
+                    </Link>
+                );
+            } else {
+                temp[i]['request'] = (
+                    <button
+                        disabled
+                        href={route('course.request', courses[i]['route'])}
+                        className='flex items-center justify-center w-full rounded-lg bg-gray-100 text-xs text-white-300 font-normal transition-all duration-200 ease-in-out'
+                    >
+                        Request
+                    </button>
+                );
+            }
+        }
     }
 
     return (
