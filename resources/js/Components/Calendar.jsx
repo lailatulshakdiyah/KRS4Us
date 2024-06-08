@@ -16,7 +16,7 @@ export default function Calendar({ courses }){
                 {days.map((day, index) => (
                     <>
                         <div className="flex flex-col w-1/6 p-2 gap-2">
-                            {courses && courses[day].map((course) => {
+                            {courses && courses[day] && courses[day].map((course) => {
                                 let bg;
                                 switch (course['type']) {
                                     case 'kuliah':

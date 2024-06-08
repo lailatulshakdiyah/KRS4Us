@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Request as Req;
+use App\Models\User;
 use DateTime;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -66,7 +67,50 @@ class HomeController extends Controller
 
     public function req(Request $request): Response
     {
-        return Inertia::render('Request');
+        $userCourseIds = $request->user()->courses()->pluck('id');
+        $requests = Req::whereIn('course_dest_id', $userCourseIds)
+                    ->where('status', 0)
+                    ->orderByDesc('created_at')
+                    ->get();
+                    
+        $courses = Course::all();
+        $idToCourse = [];
+        foreach ($courses as $course)
+        {
+            $idToCourse[$course->id] = $course;
+        }
+
+        $users = User::select('name', 'nim')->whereIn('nim', $requests->pluck('user_nim'))->get();
+        $nimToName = [];
+        foreach ($users as $user)
+        {
+            $nimToName[$user->nim] = $user->name;
+        }
+
+        foreach ($requests as $index => $req)
+        {
+            $destCourse = $idToCourse[$req->course_dest_id];
+            $srcCourse = $idToCourse[$req->course_src_id];
+            $requests[$index] = [
+                'name' => $nimToName[$req->user_nim],
+                'nim' => $req->user_nim,
+                'course' => $destCourse->code . ' - ' . $destCourse->name,
+                'mine' => [
+                    'time' => DateTime::createFromFormat('H:i:s', $destCourse->start_time)->format('H.i') . ' - ' . DateTime::createFromFormat('H:i:s', $destCourse->end_time)->format('H.i'),
+                    'type' => $destCourse->type,
+                    'class' => $destCourse->class
+                ],
+                'theirs' => [
+                    'time' => DateTime::createFromFormat('H:i:s', $srcCourse->start_time)->format('H.i') . ' - ' . DateTime::createFromFormat('H:i:s', $srcCourse->end_time)->format('H.i'),
+                    'type' => $srcCourse->type,
+                    'class' => $srcCourse->class
+                ]
+            ];
+        }
+
+        return Inertia::render('Request', [
+            'requests' => $requests
+        ]);
     }
 
     public function course(Request $request): Response

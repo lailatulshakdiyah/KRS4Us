@@ -326,6 +326,10 @@ class DatabaseSeeder extends Seeder
         $indexes = [1, 2, 5, 10, 13, 15, 16, 19, 22, 27];
         foreach ($indexes as $index) {
             $admin->courses()->attach($courses[$index]);
+        }
+
+        $indexes = [0, 2, 7, 9, 12, 14, 17, 20, 23, 26];
+        foreach ($indexes as $index) {
             $user->courses()->attach($courses[$index]);
         }
     }

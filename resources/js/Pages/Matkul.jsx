@@ -62,7 +62,7 @@ export default function Matkul({ auth, course, courses, students }) {
 
                 <div className='sm:flex sm:flex-col md:gap-7 max-w-7xl min-w-full mt-16 mx-auto p-6 lg:p-8 items-start bg-primary-50'>
                     <div className='flex flex-col'>
-                        <div className='flex text-primary-300 text-2xl font-bold leading-10'>Detail Mata Kuliah</div>
+                        <div className='flex text-primary-300 text-2xl font-bold mb-2'>Detail Mata Kuliah</div>
                         <div className='flex text-5xl text-gray-500 font-normal'>{course.name}</div>
                         {/* <div className='flex text-2xl text-gray-500 font-normal -mt-1 leading-9'>SKS: 4 (3-1) - Mayor</div> */}
                     </div>
