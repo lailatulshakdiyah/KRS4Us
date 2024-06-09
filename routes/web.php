@@ -25,6 +25,8 @@ Route::get('home', [HomeController::class, 'index'])->middleware(['auth', 'verif
 
 Route::get('request', [HomeController::class, 'req'])->middleware(['auth', 'verified'])->name('request');
 
+Route::get('request/{id}/accept', [RequestController::class, 'accept'])->middleware(['auth', 'verified'])->name('request.accept');
+
 Route::get('matkul/{id}', [HomeController::class, 'course'])->middleware(['auth', 'verified'])->name('course');
 
 Route::get('matkul/{id}/request', [RequestController::class, 'request'])->middleware(['auth', 'verified'])->name('course.request');

@@ -43,19 +43,19 @@ export default function ListMatkul({ auth, courses }) {
 
                 <div className="sm:flex sm:flex-col gap-4 max-w-7xl min-w-full mt-16 mx-auto p-6 lg:p-8 justify-center bg-cover">
                     <div className="flex flex-row gap-9 text-gray-400 items-center">
-                        <div className="flex w-3/5 text-xl font-medium">List Mata Kuliah</div>
-                        <div className="flex w-2/5 text-md font-medium">Tambah Mata Kuliah</div>
+                        <div className="flex w-2/3 text-xl font-medium">List Mata Kuliah</div>
+                        <div className="flex w-1/3 text-md font-medium">Tambah Mata Kuliah</div>
                     </div>
 
                     <div className="flex flex-row gap-9 justify-between items-start">
                         <Table
-                            headers={[['name', 'Mata Kuliah', 'w-3/6'], ['day', 'Hari', 'w-1/6 capitalize'], ['schedule', 'Jam', 'w-2/6'], ['parallel', 'Paralel', 'w-1/6']]}
+                            headers={[['name', 'Mata Kuliah', 'w-7/12'], ['day', 'Hari', 'w-1/12 capitalize'], ['schedule', 'Jam', 'w-3/12'], ['parallel', 'Kelas', 'w-1/12']]}
                             data={courses}
-                            className="w-3/5"
+                            className="w-2/3"
                             deletePrefix='admin.matkul.destroy'
                         />
 
-                        <form onSubmit={submit} className="bg-white-0 text-gray-400 w-2/5 py-5 px-6 font-gray-400 rounded-md">
+                        <form onSubmit={submit} className="bg-white-0 text-gray-400 w-1/3 py-5 px-6 font-gray-400 rounded-md">
                             <InputLabel htmlFor="code" value="Kode"/>
                             <TextInput
                                 id="code"

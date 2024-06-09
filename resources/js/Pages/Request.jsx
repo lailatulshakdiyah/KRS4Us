@@ -1,4 +1,4 @@
-import { Head, useForm } from '@inertiajs/react';
+import { Head, useForm, Link } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
 import Card from '@/Components/Card';
 import InputLabel from '@/Components/InputLabel';
@@ -14,8 +14,57 @@ export default function Request({ auth, requests }) {
         temp[i]['nim'] = requests[i]['nim'];
         temp[i]['course'] = requests[i]['course'];
 
-        temp[i]['mine'] = `${requests[i]['mine']['type'][0].toUpperCase()}${requests[i]['mine']['class']}`
-        temp[i]['theirs'] = `${requests[i]['theirs']['type'][0].toUpperCase()}${requests[i]['theirs']['class']}`
+        let bg;
+        switch (requests[i]['mine']['type']) {
+            case 'kuliah':
+                bg = 'bg-primary-300';
+                break;
+            case 'praktikum':
+                bg = 'bg-success-300';
+                break;
+            case 'responsi':
+                bg = 'bg-warning-300';
+                break;
+            default:
+                bg = 'bg-gray-75';
+        }
+        temp[i]['mine'] = (
+            <div className={`flex flex-col py-1 px-2 justify-center w-full rounded-lg ${bg} text-xs text-white-300 font-normal`}>
+                <div className='font-semibold'>{requests[i]['mine']['time']}</div>
+                <div className='capitalize'>{requests[i]['mine']['type'][0].toUpperCase() + requests[i]['mine']['class']} - {requests[i]['mine']['day']}</div>
+            </div>
+        );
+        
+        switch (requests[i]['theirs']['type']) {
+            case 'kuliah':
+                bg = 'bg-primary-300';
+                break;
+            case 'praktikum':
+                bg = 'bg-success-300';
+                break;
+            case 'responsi':
+                bg = 'bg-warning-300';
+                break;
+            default:
+                bg = 'bg-gray-75';
+        }
+        temp[i]['theirs'] = (
+            <div className={`flex flex-col py-1 px-2 justify-center w-full rounded-lg ${bg} text-xs text-white-300 font-normal`}>
+                <div className='font-semibold'>{requests[i]['theirs']['time']}</div>
+                <div className='capitalize'>{requests[i]['theirs']['type'][0].toUpperCase() + requests[i]['theirs']['class']} - {requests[i]['theirs']['day']}</div>
+            </div>
+        );
+
+        temp[i]['action'] = (
+            <>
+                <Link
+                    href={route('request.accept', requests[i]['route'])}
+                    className='flex items-center justify-center py-1 w-full rounded-full bg-primary-300 hover:bg-primary-400 active:bg-primary-500 text-xs text-white-300 font-normal transition-all duration-200 ease-in-out'
+                >
+                    Request
+                </Link>
+            </>
+        )
     }
 
     return (
@@ -49,7 +98,7 @@ export default function Request({ auth, requests }) {
                     </div>
 
                     <Table
-                        headers={[['name', 'Nama', 'w-3/12'], ['nim', 'NIM', 'w-32'], ['course', 'Mata Kuliah', 'flex-grow'], ['mine', 'Mine', 'w-1/12'], ['theirs', 'Paralel Request', 'w-1/12'], ['action', 'Aksi', 'w-2/12']]}
+                        headers={[['name', 'Nama', 'w-56'], ['nim', 'NIM', 'w-32'], ['course', 'Mata Kuliah', 'flex-grow'], ['mine', 'Mine', 'w-32'], ['theirs', 'Paralel Request', 'w-32'], ['action', 'Aksi', 'w-2/12']]}
                         data={temp}
                         className=''
 

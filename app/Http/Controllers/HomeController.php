@@ -98,13 +98,16 @@ class HomeController extends Controller
                 'mine' => [
                     'time' => DateTime::createFromFormat('H:i:s', $destCourse->start_time)->format('H.i') . ' - ' . DateTime::createFromFormat('H:i:s', $destCourse->end_time)->format('H.i'),
                     'type' => $destCourse->type,
-                    'class' => $destCourse->class
+                    'class' => $destCourse->class,
+                    'day' => $destCourse->day
                 ],
                 'theirs' => [
                     'time' => DateTime::createFromFormat('H:i:s', $srcCourse->start_time)->format('H.i') . ' - ' . DateTime::createFromFormat('H:i:s', $srcCourse->end_time)->format('H.i'),
                     'type' => $srcCourse->type,
-                    'class' => $srcCourse->class
-                ]
+                    'class' => $srcCourse->class,
+                    'day' => $srcCourse->day
+                ],
+                'route' => $req->id
             ];
         }
 
@@ -166,7 +169,7 @@ class HomeController extends Controller
             ];
         }
 
-        $students = $course->users()->select('nim', 'name')->get();
+        $students = $course->users()->select('nim', 'name')->orderBy('nim')->get();
 
         $course = [
             'name' => $course->name,
