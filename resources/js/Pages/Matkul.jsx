@@ -25,7 +25,7 @@ export default function Matkul({ auth, course, courses, students }) {
                 bg = 'bg-gray-75';
         }
         temp[i]['parallel'] = (
-            <div className={`flex items-center justify-center w-full rounded-lg ${bg} text-xs text-white-300 font-normal`}>
+            <div className={`flex items-center justify-center w-full py-0.5 rounded-lg ${bg} text-xs text-white-300 font-normal`}>
                 {courses[i]['type'][0].toUpperCase() + courses[i]['class']}
             </div>
         );
@@ -35,7 +35,7 @@ export default function Matkul({ auth, course, courses, students }) {
                 temp[i]['request'] = (
                     <Link
                         href={route('course.request', courses[i]['route'])}
-                        className='flex items-center justify-center w-full rounded-lg bg-primary-300 hover:bg-primary-400 active:bg-primary-500 text-xs text-white-300 font-normal transition-all duration-200 ease-in-out'
+                        className='flex items-center justify-center w-full py-0.5 rounded-lg bg-primary-300 hover:bg-primary-400 active:bg-primary-500 text-xs text-white-300 font-normal transition-all duration-200 ease-in-out'
                     >
                         Request
                     </Link>
@@ -45,7 +45,7 @@ export default function Matkul({ auth, course, courses, students }) {
                     <button
                         disabled
                         href={route('course.request', courses[i]['route'])}
-                        className='flex items-center justify-center w-full rounded-lg bg-gray-100 text-xs text-white-300 font-normal transition-all duration-200 ease-in-out'
+                        className='flex items-center justify-center w-full py-0.5 rounded-lg bg-gray-100 text-xs text-white-300 font-normal transition-all duration-200 ease-in-out'
                     >
                         Request
                     </button>

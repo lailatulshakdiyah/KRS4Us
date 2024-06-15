@@ -315,10 +315,34 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true
         ]);
 
-        $user = User::factory()->create([
+        $user1 = User::factory()->create([
             'name' => 'Muhammad Zahran',
             'nim' => 'G6401211074',
             'email' => 'muhammadzahran@apps.ipb.ac.id',
+            'password' => '12345678',
+            'is_admin' => false
+        ]);
+
+        $user2 = User::factory()->create([
+            'name' => 'Raisya Shinta Siregar',
+            'nim' => 'G6401211010',
+            'email' => 'raisyashinta@apps.ipb.ac.id',
+            'password' => '12345678',
+            'is_admin' => false
+        ]);
+
+        $user3 = User::factory()->create([
+            'name' => 'Muhammad Khalil Adha',
+            'nim' => 'G6401211060',
+            'email' => 'khaliladha@apps.ipb.ac.id',
+            'password' => '12345678',
+            'is_admin' => false
+        ]);
+
+        $user4 = User::factory()->create([
+            'name' => 'Lailatul Shakdiyah',
+            'nim' => 'G6401211050',
+            'email' => 'lailatulshakdiyah@apps.ipb.ac.id',
             'password' => '12345678',
             'is_admin' => false
         ]);
@@ -330,7 +354,22 @@ class DatabaseSeeder extends Seeder
 
         $indexes = [0, 2, 7, 9, 12, 14, 17, 20, 23, 26];
         foreach ($indexes as $index) {
-            $user->courses()->attach($courses[$index]);
+            $user1->courses()->attach($courses[$index]);
+        }
+
+        $indexes = [0, 2, 6, 8, 13, 15, 18, 19, 22, 27];
+        foreach ($indexes as $index) {
+            $user2->courses()->attach($courses[$index]);
+        }
+
+        $indexes = [0, 3, 6, 10, 13, 15, 18, 21, 24, 26];
+        foreach ($indexes as $index) {
+            $user3->courses()->attach($courses[$index]);
+        }
+
+        $indexes = [1, 2, 5, 8, 13, 14, 16, 21, 24, 26];
+        foreach ($indexes as $index) {
+            $user4->courses()->attach($courses[$index]);
         }
     }
 }
