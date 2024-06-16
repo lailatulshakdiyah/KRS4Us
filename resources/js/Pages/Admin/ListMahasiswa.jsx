@@ -36,8 +36,8 @@ export default function ListMahasiswa({ auth, users }) {
                                     <TambahMahasiswa/>
                                 </Dropdown.Content>
                             </Dropdown>
-                            <div className="bg-gray-75 border-gray-75 border w-px"></div>
-                            <div className="inline-flex transition duration-200 bg-success-300 hover:bg-success-400 py-2 px-6 rounded-lg text-white-300 text-xs tracking-wider">Kirim Email ke Semua</div>
+                            {/* <div className="bg-gray-75 border-gray-75 border w-px"></div>
+                            <div className="inline-flex transition duration-200 bg-success-300 hover:bg-success-400 py-2 px-6 rounded-lg text-white-300 text-xs tracking-wider">Kirim Email ke Semua</div> */}
                         </div>
                     </div>
 

@@ -36,7 +36,7 @@ const Row = ({row, headers, editPrefix, deletePrefix}) => {
                 <Fragment key={index}>
                     <div className={`flex py-1 px-2 ${header[2]}`}>{row[header[0]]}</div>
                     {index < headers.length-1 && (
-                        <div className="bg-primary-200 w-px h-full"></div>
+                        <div className="flex bg-primary-200 w-px h-full"></div>
                     )}
                 </Fragment>
             ))}

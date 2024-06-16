@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Admin;
 use App\Imports\MainImport;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -16,33 +17,12 @@ class AdminController extends Controller
 {
     public function index(Request $request): Response
     {
-        $users = User::select('name', 'nim', 'email')->get();
-
-        for ($i = 0; $i < count($users); $i++) {
-            $users[$i]->id = $i+1;
-            $users[$i]->route = ['nim' => $users[$i]['nim']];
-        }
-
-        return Inertia::render('Admin/ListMahasiswa', [
-            'users' => $users
-        ]);
+        return Admin::melihatListUser($request);
     }
 
     public function store(Request $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'nim' => 'required|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required',
-            'is_admin' => 'required|boolean',
-        ]);
-
-        $validated['password'] = Hash::make($validated['password']);
-
-        User::insert($validated);
-
-        return redirect()->route('admin');
+        return Admin::tambahUser($request);
     }
 
     public function upload(Request $request): RedirectResponse

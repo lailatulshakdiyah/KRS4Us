@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Admin;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -44,30 +45,11 @@ class UserController extends Controller
 
     public function edit(Request $request): RedirectResponse
     {
-        $user = User::where('nim', $request->route('nim'));
-        $id = $user->first()->id;
-
-        $validated = $request->validate([
-            'name' => '',
-            'nim' => [Rule::unique('users')->ignore($id)],
-            'email' => ['email', Rule::unique('users')->ignore($id)],
-            'password' => '',
-        ]);
-
-        if ($validated['password'])
-            $validated['password'] = Hash::make($validated['password']);
-        else
-            unset($validated['password']);
-
-        $user->update($validated);
-
-        return redirect()->route('admin.mahasiswa', ['nim' => $validated['nim']]);
+        return Admin::editUser($request);
     }
 
     public function destroy(Request $request): RedirectResponse
     {
-        User::where('nim', $request->route('nim'))->first()->delete();
-
-        return redirect()->route('admin');
+        return Admin::hapusUser($request);
     }
 }
