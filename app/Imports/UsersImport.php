@@ -19,6 +19,7 @@ class UsersImport implements ToCollection, WithHeadingRow
     {
         foreach ($rows as $row)
         {
+            dd($row);
             if ($row['nama'])
             {
                 User::updateOrCreate([
