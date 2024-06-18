@@ -41,7 +41,7 @@ export default function Welcome({ auth, status, canResetPassword }) {
                             <span className='text-primary-300 font-bold'>KRS 4 US</span>
                         </div>
                         <div className="mt-4 max-w-md text-gray-400">Kenapa Harus Pakai KRS 4US?</div>
-                        <div className="mt-4 max-w-md text-gray-400 font-bold">Kolaborasi Anti Ribet</div>
+                        <div className="mt-4 max-w-md text-gray-400 font-bold">Tukar Paralel Anti Ribet</div>
                         <div className="mt-4 max-w-md text-gray-400 font-bold">Jadwal Kuliah yang Pas</div>
                         <div className="mt-4 max-w-md text-gray-400 font-bold">Informasi Lengkap dan Terpercaya</div>
                     </div>
