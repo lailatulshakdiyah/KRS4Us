@@ -12,7 +12,7 @@ export default function Navbar({ title, auth }) {
                             <ApplicationLogo className="block h-9 w-auto fill-current text-white-300" />
                         </Link>
                         <div className="hidden space-x-3 sm:ms-6 sm:flex text-white-300 tracking-wide">
-                            <span className="font-bold">KRS 4Us</span>
+                            <span className="font-bold">KRS 4US</span>
                             <span>|</span>
                             <span>{title}</span>
                         </div>
