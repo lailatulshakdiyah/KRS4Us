@@ -16,15 +16,13 @@ class MainImport implements WithMultipleSheets
     {
         $all = [
             0 => new UsersImport(),
-            1 => new CoursesImport(),
-            // '*' => new CourseUserImport()
+            1 => new CoursesImport()
         ];
 
         for ($i = 2; $i < $this->sheetCount; $i++) {
             $all[$i] = new CourseUserImport();
         }
 
-        dump('hi');
         return $all;
     }
 }
