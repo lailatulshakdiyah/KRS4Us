@@ -33,9 +33,10 @@ class AdminController extends Controller
 
         if ($request->file('file')) {
             $file = $request->file('file');
+            dump($file->getRealPath());
             $spreadsheet = IOFactory::load($file->getRealPath());
 
-            Excel::import(new MainImport($spreadsheet->getSheetCount()), $request->file('file'));
+            Excel::import(new MainImport($spreadsheet->getSheetCount()), $file);
 
             return back()->with('success', 'File uploaded and processed successfully.');
         }
