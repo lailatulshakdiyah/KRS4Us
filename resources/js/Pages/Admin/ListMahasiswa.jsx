@@ -157,7 +157,7 @@ const TambahMahasiswa = () => {
                     onChange={(e) => setData('password', e.target.value)}
                     required
                 />
-                <button type="button" className="inline-flex w-1/6 bg-primary-300">Tes</button>
+               {/* <button type="button" className="inline-flex w-1/6 bg-primary-300">Tes</button> */}
             </div>
 
             <input
