@@ -59,9 +59,9 @@ export default function Request({ auth, requests }) {
             <>
                 <Link
                     href={route('request.accept', requests[i]['route'])}
-                    className='flex items-center justify-center py-1 w-full rounded-full bg-primary-300 hover:bg-primary-400 active:bg-primary-500 text-xs text-white-300 font-normal transition-all duration-200 ease-in-out'
+                    className='flex items-center justify-center py-1 w-full rounded-full bg-success-300 hover:bg-primary-400 active:bg-primary-500 text-xs text-white-300 font-normal transition-all duration-200 ease-in-out'
                 >
-                    Request
+                    Accept
                 </Link>
             </>
         )
