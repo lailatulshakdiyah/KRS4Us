@@ -94,7 +94,7 @@ export default function Welcome({ auth, status, canResetPassword }) {
                             )}
 
                             <PrimaryButton className="mt-4 flex w-full text-sm" disabled={processing}>
-                                Sign in
+                                Log in 
                             </PrimaryButton>
                         </form>
                     </div>
