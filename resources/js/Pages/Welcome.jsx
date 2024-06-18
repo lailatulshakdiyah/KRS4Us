@@ -40,7 +40,10 @@ export default function Welcome({ auth, status, canResetPassword }) {
                             <span className='text-gray-400'>Tenang Ada </span>
                             <span className='text-primary-300 font-bold'>KRS 4 US</span>
                         </div>
-                        <div className="mt-4 max-w-md text-gray-400">Yorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra.</div>
+                        <div className="mt-4 max-w-md text-gray-400">Kenapa Harus Pakai KRS 4US?</div>
+                        <div className="mt-4 max-w-md text-gray-400 font-bold">Kolaborasi Anti Ribet</div>
+                        <div className="mt-4 max-w-md text-gray-400 font-bold">Jadwal Kuliah yang Pas</div>
+                        <div className="mt-4 max-w-md text-gray-400 font-bold">Informasi Lengkap dan Terpercaya</div>
                     </div>
                     <div className="bg-white-75 w-96 h-min rounded-lg drop-shadow-2xl p-11">
                         <div className="w-min mx-auto text-primary-300 text-4xl font-black text-center">KRS</div>
@@ -50,7 +53,7 @@ export default function Welcome({ auth, status, canResetPassword }) {
                             <div className="bg-gray-500 h-0.5 -mt-1"></div>
                         </div>
                         <div className="mt-7 text-xs text-center text-gray-500">
-                            Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                        KRS 4US adalah web app yang dirancang khusus untuk mahasiswa agar bisa menyusun Kartu Rencana Studi (KRS) dengan lebih mudah dan menyenangkan, bahkan bisa kolaborasi bareng teman-teman!
                         </div>
 
                         <form onSubmit={submit} className="grid">
