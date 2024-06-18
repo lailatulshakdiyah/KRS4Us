@@ -42,7 +42,7 @@ class CourseUserImport implements ToCollection, WithEvents
         {
             for ($j = 0; $j < count($headings); $j++)
             {
-                if ($rows[$i][$j])
+                if ($rows[$i][$j] && $headings[$j])
                 {
                     DB::table('course_user')->insert([
                         'user_nim' => $rows[$i][$j],
