@@ -30,12 +30,12 @@ class UsersImport implements ToCollection, WithHeadingRow
                     'password' => Hash::make($row['password']),
                 ]);
 
-                \Illuminate\Support\Facades\Mail::to($row['email'])
-                    ->send(new \App\Mail\Credentials([
-                        'name' => $row['nama'],
-                        'nim' => $row['nim'],
-                        'password' => $row['password']
-                    ]));
+                // \Illuminate\Support\Facades\Mail::to($row['email'])
+                //     ->send(new \App\Mail\Credentials([
+                //         'name' => $row['nama'],
+                //         'nim' => $row['nim'],
+                //         'password' => $row['password']
+                //     ]));
             }
         }
     }
