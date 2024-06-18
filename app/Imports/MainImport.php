@@ -24,6 +24,7 @@ class MainImport implements WithMultipleSheets
             $all[$i] = new CourseUserImport();
         }
 
+        dump('hi');
         return $all;
     }
 }

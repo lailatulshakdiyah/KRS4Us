@@ -17,7 +17,6 @@ class CoursesImport implements ToCollection, WithHeadingRow
     */
     public function collection(Collection $rows)
     {
-        dd('hi');
         foreach ($rows as $row)
         {
             if ($row['kode'])
