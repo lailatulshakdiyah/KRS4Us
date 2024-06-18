@@ -20,6 +20,8 @@ class MainImport implements WithMultipleSheets
             // '*' => new CourseUserImport()
         ];
 
+        dd($this->sheetCount);
+
         for ($i = 2; $i < $this->sheetCount; $i++) {
             $all[$i] = new CourseUserImport();
         }
