@@ -1,5 +1,10 @@
 # krs4us
-krs4us adalah website pertukaran paralel/kelas sebagai tugas akhir mata kuliah Analisis dan Desain Sistem Ilmu Komputer IPB University Semester 6. Kelompok kami terdiri dari Muhammad Zahran sebagai Back-End Developer, Raisya Shinta Siregar sebagai project manager dan system analyst, Muhammad Khalil Adha sebagai UI/UX Designer, dan Lailatul Shakdiyah sebagai Front-End Developer.
+krs4us adalah website pertukaran paralel/kelas sebagai tugas akhir mata kuliah Analisis dan Desain Sistem Ilmu Komputer IPB University Semester 6. 
+Kelompok kami terdiri dari  :
+- Muhammad Zahran sebagai Back-End Developer
+- Lailatul Shakdiyah sebagai Front-End Developer
+- Raisya Shinta Siregar sebagai Project Manager dan System Analyst
+- Muhammad Khalil Adha sebagai UI/UX Designer
 
 ## Instalasi
 Pastikan sudah install composer dan mysql. Buatlah user baru dan database baru pada mysql.
